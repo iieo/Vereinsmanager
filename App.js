@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   Link,
@@ -6,13 +6,106 @@ import {
   Center,
   Heading,
   Switch,
+  Pressable,
   useColorMode,
   NativeBaseProvider,
   extendTheme,
-  VStack,
+  Divider,
+  Row,
+  Column,
   Code,
+  Box,
+  Stack,
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
+import Icon from "react-native-vector-icons/AntDesign";
+import Sidebar from "./components/Sidebar";
+
+import Datascreen from "./components/DataScreen";
+import Dashboard from "./components/Dashboard";
+
+const initData = {
+  header: [
+    "name",
+    "firstName",
+    "birthdate",
+    "other9",
+    "other8",
+    "other7",
+    "other6",
+    "other5",
+    "other4",
+    "other3",
+    "other2",
+    "other1",
+  ],
+  items: [
+    [
+      "Wick",
+      "John",
+      null,
+      "other",
+      "other",
+      "other",
+      "other",
+      "other",
+      "other",
+      "other",
+      "other",
+      "other",
+    ],
+    ["Einstein", "Albert", null],
+    ["Reynolds", "Ryan", null],
+    ["Cena", "John", null],
+    ["Ellis", "John", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Cena", "John", null],
+    ["Ellis", "John", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Cena", "John", null],
+    ["Ellis", "John", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Cena", "John", null],
+    ["Ellis", "John", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+    ["Wick", "Tom", null],
+  ],
+};
 
 // Define the config
 const config = {
@@ -24,48 +117,40 @@ const config = {
 export const theme = extendTheme({ config });
 
 export default function App() {
+  let [data, setData] = useState(initData);
+  let [nav, setNav] = useState("persons");
+  function changeData(dataIndex, index, value) {
+    setData((prevData) => {
+      let changedData = { ...prevData };
+      changedData.items[dataIndex][index] = value;
+      console.log(changedData);
+      return changedData;
+    });
+  }
   return (
-    <NativeBaseProvider>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Code>App.js</Code>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={"xl"}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
+    <NativeBaseProvider theme={theme}>
+      <Center flex={1}>
+        <Stack
+          m="0"
+          w="100%"
+          h="100%"
+          direction={{ base: "column", md: "row" }}
+          rounded="xl"
+        >
+          <Sidebar setNav={setNav} />
+          <Box
+            flex={{ base: 1, md: 3 }}
+            _dark={{ bg: "muted.800" }}
+            _light={{ bg: "amber.50" }}
+          >
+            {nav === "dashboard" ? (
+              <Dashboard nav={nav} />
+            ) : (
+              <Datascreen nav={nav} data={data} changeData={changeData} />
+            )}
+          </Box>
+        </Stack>
       </Center>
     </NativeBaseProvider>
-  );
-}
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === "light"}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
   );
 }
