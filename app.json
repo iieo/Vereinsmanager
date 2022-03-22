@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -27,6 +25,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "DB_URI": "mongodb+srv://iieo:XGaPxjr1pDZ135bW@cluster0.xz1jp.mongodb.net/Verein?retryWrites=true&w=majority"
     }
   }
 }

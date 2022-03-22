@@ -1,9 +1,3 @@
-# NativeBase Expo Template
+Vereinsmanager
 
-The official NativeBase template for [Expo](https://docs.expo.io/)
-
-## Usage
-
-```sh
-expo init my-app --template @native-base/expo-template
-```
+Soll für alle Vereine gedacht sein umd die Aufgaben des Kassiers zu erleichtern.

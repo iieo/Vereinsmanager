@@ -1,37 +1,23 @@
-import React from "react";
-import { Column, Heading } from "native-base";
-import Datatable from "./Datatable";
-import * as SQLite from "expo-sqlite";
+import React, { useEffect, Component } from "react";
+import mongoose from "mongoose";
+import User from "../components/user.js";
 
-const db = SQLite.openDatabase("dbTest", "1.0.0");
-
-export default function DatabaseProvider({ children }) {
-  const createTable = () => {
-    const sqlStatement =
-      "CREATE TABLE IF NOT EXISTS" +
-      "Users " +
-      "(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);";
-    db.exec([{ sql: sqlStatement, args: [] }], false, () =>
-      console.log("Foreign keys turned on")
-    );
-  };
-
-  async function openDatabase(pathToDatabaseFile) {
-    if (
-      !(await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite"))
-        .exists
-    ) {
-      await FileSystem.makeDirectoryAsync(
-        FileSystem.documentDirectory + "SQLite"
-      );
-    }
-    await FileSystem.downloadAsync(
-      Asset.fromModule(require(pathToDatabaseFile)).uri,
-      FileSystem.documentDirectory + "SQLite/myDatabaseName.db"
-    );
-    return SQLite.openDatabase("myDatabaseName.db");
+export default class DatabaseProvider extends Component {
+  render() {
+    return <>{this.props.children}</>;
   }
-  openDatabase();
-
-  return children;
 }
+
+async function connectToDB() {
+  try {
+    await mongoose.connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to database");
+  } catch (err) {
+    console.err(err);
+  }
+}
+
+connectToDB();

@@ -1,24 +1,6 @@
 import React from "react";
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  Pressable,
-  useColorMode,
-  Input,
-  Divider,
-  Row,
-  Column,
-  Code,
-  Box,
-  Stack,
-  ScrollView,
-} from "native-base";
-import NativeBaseIcon from "./NativeBaseIcon";
-import Icon from "react-native-vector-icons/AntDesign";
+import { Input, Divider, Row, Column, Box, ScrollView } from "native-base";
+
 export default function Datatable3({ data, changeData }) {
   return (
     <ScrollView horizontal pagingEnabled={true}>

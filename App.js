@@ -1,28 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Text,
-  Link,
-  HStack,
   Center,
-  Heading,
-  Switch,
-  Pressable,
-  useColorMode,
   NativeBaseProvider,
   extendTheme,
-  Divider,
-  Row,
-  Column,
-  Code,
   Box,
   Stack,
 } from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
-import Icon from "react-native-vector-icons/AntDesign";
+import { initializeApp } from "firebase/app";
 import Sidebar from "./components/Sidebar";
-
 import Datascreen from "./components/DataScreen";
 import Dashboard from "./components/Dashboard";
+import { collection, getDocs } from "firebase/firestore";
+import Constants from "expo-constants";
+import db from "./components/Database";
 
 const initData = {
   header: [
@@ -117,6 +107,20 @@ const config = {
 export const theme = extendTheme({ config });
 
 export default function App() {
+  const [users, setUsers] = useState();
+
+  useEffect(async () => {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    let userDocs = [];
+    querySnapshot.forEach((doc) => {
+      userDocs.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    setUsers(userDocs);
+  }, []);
+
   let [data, setData] = useState(initData);
   let [nav, setNav] = useState("persons");
   function changeData(dataIndex, index, value) {
@@ -146,7 +150,7 @@ export default function App() {
             {nav === "dashboard" ? (
               <Dashboard nav={nav} />
             ) : (
-              <Datascreen nav={nav} data={data} changeData={changeData} />
+              <Datascreen nav={nav} data={users} changeData={changeData} />
             )}
           </Box>
         </Stack>
