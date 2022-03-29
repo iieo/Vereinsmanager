@@ -3,23 +3,18 @@ import {
   Text,
   Link,
   HStack,
-  Center,
   Heading,
   Switch,
   Pressable,
   useColorMode,
-  NativeBaseProvider,
   Divider,
   Row,
   Column,
-  Code,
-  Box,
-  Stack,
+  Icon,
 } from "native-base";
 import NativeBaseIcon from "./NativeBaseIcon";
-import Icon from "react-native-vector-icons/AntDesign";
-
-export default function Sidebar({ setNav, nav }) {
+import AntDesign from "react-native-vector-icons/AntDesign";
+export default function Sidebar({ items }) {
   return (
     <>
       <Column
@@ -51,51 +46,15 @@ export default function Sidebar({ setNav, nav }) {
           mt="8"
           alignItems="center"
         >
-          <SidebarItem
-            onPress={() => {
-              setNav("dashboard");
-            }}
-            isActive={nav === "dashboard"}
-            icon="dashboard"
-          >
-            Dashboard
-          </SidebarItem>
-          <SidebarItem
-            onPress={() => {
-              setNav("users");
-            }}
-            isActive={nav === "users"}
-            icon="user"
-          >
-            Personen
-          </SidebarItem>
-          <SidebarItem
-            onPress={() => {
-              setNav("members");
-            }}
-            isActive={nav === "members"}
-            icon="team"
-          >
-            Mitglieder
-          </SidebarItem>
-          <SidebarItem
-            onPress={() => {
-              setNav("accounts");
-            }}
-            isActive={nav === "accounts"}
-            icon="creditcard"
-          >
-            Konten
-          </SidebarItem>
-          <SidebarItem
-            onPress={() => {
-              setNav("invoices");
-            }}
-            isActive={nav === "invoices"}
-            icon="tago"
-          >
-            Rechnungen
-          </SidebarItem>
+          {items.map((item) => (
+            <SidebarItem
+              onPress={item.onPress}
+              isActive={false}
+              icon={item.iconName}
+            >
+              {item.text}
+            </SidebarItem>
+          ))}
           <ToggleDarkMode />
         </Column>
       </Column>
@@ -135,7 +94,7 @@ function SidebarItem({ children, icon, onPress, isActive }) {
       _light={{ bg: isActive ? "blue.400" : null }}
     >
       <Row alignItems={"center"} space="5">
-        <Icon name={icon} size={30} color="#000" />
+        <Icon as={<AntDesign name={icon} />} size={30} ml="2" color="white" />
         <Text>{children}</Text>
       </Row>
     </Pressable>

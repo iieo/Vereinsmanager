@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Datatable from "../components/displayData/Datatable";
 import { DataContext } from "../components/database/DatabaseProvider";
-export default function UsersScreen() {
+export default function PersonsScreen() {
   const data = useContext(DataContext);
   const defaultInputs = [
     { text: "Name", iconName: "person", replacing: "name" },
@@ -19,7 +19,7 @@ export default function UsersScreen() {
   ];
   return (
     <Datatable
-      data={data.users.data}
+      data={data.persons.data}
       title="Personen"
       fabText="Person hinzufügen"
       sort={(a, b) => {
@@ -33,7 +33,7 @@ export default function UsersScreen() {
         defaultInputs,
         additionalInputs,
         title: "Person hinzufügen",
-        addItem: data.users.addItem,
+        addItem: data.persons.addItem,
       }}
     />
   );

@@ -5,16 +5,15 @@ import { DataContext } from "../components/database/DatabaseProvider";
 
 export default function Dashboard(props) {
   const data = useContext(DataContext);
-  console.log(data.users);
   return (
     <Column>
       <Heading mt="6" size="md">
         Dashboard
       </Heading>
       <Center>
-        <Stack direction={{ base: "column", md: "row" }}>
+        <Stack direction={{ base: "column", lg: "row" }}>
           <InfoCard
-            value={data.users.data?.length}
+            value={data.persons.data?.length}
             text={"Mitglieder"}
             iconName={"person"}
           />
@@ -22,7 +21,7 @@ export default function Dashboard(props) {
         </Stack>
       </Center>
       <Center>
-        <Stack direction={{ base: "column", md: "row" }}>
+        <Stack direction={{ base: "column", lg: "row" }}>
           <InfoCard
             value={data.invoices.data?.length}
             text={"Rechnungen"}

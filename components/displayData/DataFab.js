@@ -13,7 +13,7 @@ import { AntDesign } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 
 export default function DataFab({ text, modalData }) {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Fab

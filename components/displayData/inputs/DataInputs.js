@@ -4,7 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 export default function DataInput({ inputData, inputValues, setInputValues }) {
   return (
-    <FormControl mt="3" px="5">
+    <FormControl>
       <FormControl.Label>{inputData.text}</FormControl.Label>
       <Input
         value={inputValues[inputData.replacing]}

@@ -1,7 +1,7 @@
 import React from "react";
-import UsersScreen from "../screens/UsersScreen";
+import PersonsScreen from "../screens/PersonsScreen";
 import Dashboard from "../screens/Dashboard";
-import { Text } from "native-base";
+import { Text, Box } from "native-base";
 import AccountsScreen from "../screens/AccountsScreen";
 import InvoicesScreen from "../screens/InvoicesScreen";
 import MembersScreen from "../screens/MembersScreen";
@@ -12,8 +12,8 @@ export default function Navigator({ nav }) {
     case "dashboard":
       screen = <Dashboard />;
       break;
-    case "users":
-      screen = <UsersScreen />;
+    case "persons":
+      screen = <PersonsScreen />;
       break;
     case "accounts":
       screen = <AccountsScreen />;
@@ -25,5 +25,13 @@ export default function Navigator({ nav }) {
       screen = <MembersScreen />;
       break;
   }
-  return screen;
+  return (
+    <Box
+      flex={{ base: 1, md: 3 }}
+      _dark={{ bg: "muted.800" }}
+      _light={{ bg: "light.50" }}
+    >
+      {screen}
+    </Box>
+  );
 }

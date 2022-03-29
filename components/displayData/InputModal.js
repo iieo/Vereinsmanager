@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
 import {
   Fab,
   Text,
@@ -11,10 +12,12 @@ import {
   KeyboardAvoidingView,
   Button,
 } from "native-base";
+import { DataContext } from "../database/DatabaseProvider";
 import InputsManager from "./InputsManager";
 
 export default function InputModal({ showModal, setShowModal, modalData }) {
   const [inputValues, setInputValues] = useState({});
+  const data = useContext(DataContext);
 
   return (
     <Modal
@@ -29,6 +32,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
         <Modal.Body p="4">
           <KeyboardAvoidingView behavior="padding" enabled>
             <InputsManager
+              data={data}
               modalData={modalData}
               inputValues={inputValues}
               setInputValues={setInputValues}
@@ -48,7 +52,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
             </Button>
             <Button
               onPress={() => {
-                modalData.addItem(inputValues);
+                -modalData.addItem(inputValues);
                 setShowModal(false);
               }}
             >

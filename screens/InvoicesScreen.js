@@ -5,8 +5,18 @@ import { DataContext } from "../components/database/DatabaseProvider";
 export default function InvoicesScreen() {
   const data = useContext(DataContext);
   const defaultValues = [
-    { text: "Sender", iconName: "person", replacing: "sender" },
-    { text: "Empfänger", iconName: "person", replacing: "receiver" },
+    {
+      text: "Sender",
+      iconName: "person",
+      replacing: "sender",
+      type: "selectAccount",
+    },
+    {
+      text: "Empfänger",
+      iconName: "person",
+      replacing: "receiver",
+      type: "selectAccount",
+    },
   ];
   return (
     <Datatable

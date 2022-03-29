@@ -25,10 +25,10 @@ export default function Datatable({
 
           {data?.sort(sort).map((obj, index) => (
             <TableRow key={index + obj}>
-              {headers.map((headerObj, index) => (
+              {headers.map((headerObj, index2) => (
                 <TableCell
                   value={obj[headerObj.replacing]}
-                  key={headerObj.replacing + index}
+                  key={headerObj.replacing + index2}
                 />
               ))}
             </TableRow>

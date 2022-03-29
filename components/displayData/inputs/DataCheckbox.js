@@ -7,7 +7,7 @@ export default function DataCheckbox({
   setInputValues,
 }) {
   return (
-    <FormControl mt="5" px="5">
+    <FormControl mb="2">
       <Row justifyContent="space-between">
         <FormControl.Label>{inputData.text}</FormControl.Label>
         <Checkbox

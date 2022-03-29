@@ -1,8 +1,0 @@
-
-###
-
-GET http://localhost:3000/addUser
-
-###
-
-GET http://localhost:3000/getUsers
