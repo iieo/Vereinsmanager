@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Column, Heading, Stack, Center } from "native-base";
 import InfoCard from "../components/dashboard/InfoCard";
-import { DataContext } from "../components/database/DatabaseProvider";
+import { DataContext } from "../components/datahandler/DatabaseProvider";
 
 export default function Dashboard(props) {
   const data = useContext(DataContext);

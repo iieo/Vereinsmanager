@@ -8,7 +8,7 @@ import {
 } from "native-base";
 import Navigator from "./components/Navigator";
 import Sidebar from "./components/Sidebar";
-import DatabaseProvider from "./components/database/DatabaseProvider";
+import DatabaseProvider from "./components/datahandler/DatabaseProvider";
 // Define the config
 const config = {
   useSystemColorMode: false,

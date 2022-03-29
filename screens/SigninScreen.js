@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../components/database/Firebase";
+import { auth } from "../components/datahandler/Firebase";
 import AuthScreen from "./AuthScreen";
 
 export default function SigninScreen({ setNav, setUser }) {

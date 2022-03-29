@@ -10,7 +10,7 @@ import {
   Icon,
 } from "native-base";
 import DataSelector from "./DataSelector";
-import { DataContext } from "../../database/DatabaseProvider";
+import { DataContext } from "../../datahandler/DatabaseProvider";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function SelectUserInput(props) {

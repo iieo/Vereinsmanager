@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Datatable from "../components/displayData/Datatable";
-import { DataContext } from "../components/database/DatabaseProvider";
+import { DataContext } from "../components/datahandler/DatabaseProvider";
 
 export default function AccountsScreen() {
   const data = useContext(DataContext);

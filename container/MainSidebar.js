@@ -1,6 +1,6 @@
 import React from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../components/database/Firebase";
+import { auth } from "../components/datahandler/Firebase";
 import Sidebar from "../components/Sidebar";
 export default function MainNavContainer({ nav, setNav, setUser }) {
   function navTo(label) {

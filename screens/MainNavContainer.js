@@ -1,7 +1,7 @@
 import React from "react";
 import NavContainer from "./NavContainer";
 import { signOut } from "firebase/auth";
-import { auth } from "../components/database/Firebase";
+import { auth } from "../components/datahandler/Firebase";
 
 export default function MainNavContainer({ nav, setNav }) {
   function navTo(label) {

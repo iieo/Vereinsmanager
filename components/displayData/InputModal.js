@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   Button,
 } from "native-base";
-import { DataContext } from "../database/DatabaseProvider";
+import { DataContext } from "../datahandler/DatabaseProvider";
 import InputsManager from "./InputsManager";
 
 export default function InputModal({ showModal, setShowModal, modalData }) {

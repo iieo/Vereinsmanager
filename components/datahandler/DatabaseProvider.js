@@ -8,7 +8,9 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "./Firebase";
-
+import Person from "./Person";
+import Account from "./Account"
+import Invoice from "./Invoice";
 export const DataContext = createContext();
 
 export default function DatabaseProvider({
@@ -17,7 +19,7 @@ export default function DatabaseProvider({
 }) {
   const [data, setData] = useState({});
 
-  function setUp(
+  function setUp(datatype,
     collectionPath,
     q = query(collection(db, "users", user.uid, collectionPath)),
     dataName = collectionPath
@@ -47,17 +49,17 @@ export default function DatabaseProvider({
       );
       return unsubscribe;
     }, []);
-    return async (userToAdd) => {
+    return async (itemToAdd) => {
       await addDoc(
         collection(db, "users/" + user.uid + "/" + collectionPath),
-        userToAdd
+        itemToAdd
       );
     };
   }
-  let addPerson = setUp("persons");
-  let addAccount = setUp("accounts");
-  let addInvoice = setUp("invoices");
-  let addMember = setUp(
+  let addPerson = setUp(Person,"persons");
+  let addAccount = setUp(Account,"accounts");
+  let addInvoice = setUp(Invoice,"invoices");
+  let addMember = setUp(Person,
     "persons",
     query(
       collection(db, "users", user.uid, "persons"),
