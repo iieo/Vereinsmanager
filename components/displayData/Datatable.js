@@ -2,14 +2,7 @@ import React from "react";
 import DataFab from "./DataFab";
 import { Input, Divider, Row, Column, ScrollView, Heading } from "native-base";
 
-export default function Datatable({
-  data,
-  headers,
-  fabText,
-  modalData,
-  title,
-  sort,
-}) {
+export default function Datatable({ data, headers, children, title, sort}) {
   return (
     <Column h="100%">
       <Heading mt="6" size="md">
@@ -27,7 +20,7 @@ export default function Datatable({
             <TableRow key={index + obj}>
               {headers.map((headerObj, index2) => (
                 <TableCell
-                  value={obj[headerObj.replacing]}
+                  value={obj.data[headerObj.replacing]}
                   key={headerObj.replacing + index2}
                 />
               ))}
@@ -35,16 +28,9 @@ export default function Datatable({
           ))}
         </ScrollView>
       </ScrollView>
-      {fabText && <DataFab text={fabText} modalData={modalData} />}
+      {children}
     </Column>
   );
-}
-function getHeaderData(objects) {
-  if (!objects) {
-    return ["loading"];
-  }
-  const keys = objects.map((obj) => Object.keys(obj));
-  return keys.reduce((acc, currObj) => acc.concat(currObj));
 }
 function TableRow({ children }) {
   return (
@@ -74,5 +60,5 @@ function TableHeader({ children }) {
   );
 }
 function TableTitle({ value }) {
-  return <Input value={value} w="40" variant="unstyled" isReadOnly={true} />;
+  return <Input value={value} w="40" variant="unstyled" isReadOnly />;
 }

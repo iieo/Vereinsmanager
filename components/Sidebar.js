@@ -46,8 +46,9 @@ export default function Sidebar({ items }) {
           mt="8"
           alignItems="center"
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <SidebarItem
+              key={item + index}
               onPress={item.onPress}
               isActive={false}
               icon={item.iconName}

@@ -18,8 +18,9 @@ export default function AuthScreen({ title, inputs, onSubmit }) {
         <Center flex="1">
           <Heading mb="10">{title}</Heading>
           <Column space="7">
-            {inputs?.map((input) => (
+            {inputs?.map((input, index) => (
               <DataInput
+                key={input + index}
                 inputData={input}
                 inputValues={state}
                 setInputValues={setState}

@@ -12,8 +12,14 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 
-export default function DataFab({ text, modalData }) {
+export default function DataFab({ text, children }) {
   const [showModal, setShowModal] = useState(false);
+  let childrenWithProps = React.Children.map(children, function (child) {
+    return React.cloneElement(child, {
+      showModal,
+      setShowModal,
+    });
+  });
   return (
     <>
       <Fab
@@ -26,11 +32,7 @@ export default function DataFab({ text, modalData }) {
           setShowModal(true);
         }}
       />
-      <InputModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        modalData={modalData}
-      />
+      {childrenWithProps}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Datatable from "../components/displayData/Datatable";
 import { DataContext } from "../components/datahandler/DatabaseProvider";
+import Person from "../components/datahandler/Person";
 
 export default function MembersScreen() {
   const data = useContext(DataContext);
@@ -11,14 +12,9 @@ export default function MembersScreen() {
   ];
   return (
     <Datatable
-      data={data.members.data}
+      data={data.members}
       title="Mitglieder"
-      sort={(a, b) => {
-        if (a === b) {
-          return 0;
-        }
-        return a.name < b.name ? -1 : 1;
-      }}
+      sort={Person.sort}
       headers={defaultInputs}
     />
   );

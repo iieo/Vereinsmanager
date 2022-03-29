@@ -5,7 +5,6 @@ export default function DataSelector({
   title,
   onSubmit,
   data,
-  toReadableFormat,
   showModal,
   setShowModal,
 }) {
@@ -36,7 +35,7 @@ export default function DataSelector({
                   setSelected(obj);
                 }}
               >
-                <Text>{toReadableFormat(obj)}</Text>
+                <Text>{obj.toString()}</Text>
               </Pressable>
             ))}
           </Column>

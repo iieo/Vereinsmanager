@@ -52,7 +52,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
             </Button>
             <Button
               onPress={() => {
-                -modalData.addItem(inputValues);
+                modalData.addItem(inputValues);
                 setShowModal(false);
               }}
             >

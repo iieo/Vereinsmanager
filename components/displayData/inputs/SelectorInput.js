@@ -14,8 +14,8 @@ import { DataContext } from "../../datahandler/DatabaseProvider";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function SelectUserInput(props) {
-  const [showModal, setShowModal] = useState(false);
   const defaultText = props.inputData.text;
+  const [showModal, setShowModal] = useState(false);
   const [selectedText, setSelectedText] = useState(defaultText);
   return (
     <FormControl>
@@ -53,7 +53,7 @@ export default function SelectUserInput(props) {
             ...prev,
             [props.inputData.replacing]: selected.id,
           }));
-          setSelectedText(props.toReadableFormat(selected));
+          setSelectedText(selected.toString());
         }}
       />
     </FormControl>

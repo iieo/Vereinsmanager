@@ -3,7 +3,7 @@ import { Column, Heading, Stack, Center } from "native-base";
 import InfoCard from "../components/dashboard/InfoCard";
 import { DataContext } from "../components/datahandler/DatabaseProvider";
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const data = useContext(DataContext);
   return (
     <Column>
@@ -13,7 +13,7 @@ export default function Dashboard(props) {
       <Center>
         <Stack direction={{ base: "column", lg: "row" }}>
           <InfoCard
-            value={data.persons.data?.length}
+            value={data.members?.length}
             text={"Mitglieder"}
             iconName={"person"}
           />
@@ -23,7 +23,7 @@ export default function Dashboard(props) {
       <Center>
         <Stack direction={{ base: "column", lg: "row" }}>
           <InfoCard
-            value={data.invoices.data?.length}
+            value={data.invoices?.length}
             text={"Rechnungen"}
             iconName={"person"}
           />

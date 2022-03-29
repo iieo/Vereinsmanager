@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 import { Center, NativeBaseProvider, extendTheme, Stack } from "native-base";
 import MainContainer from "./container/MainContainer";
 import AuthContainer from "./container/AuthContainer";
