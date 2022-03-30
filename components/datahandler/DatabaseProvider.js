@@ -11,61 +11,59 @@ import { db } from "./Firebase";
 import Person from "./Person";
 import Account from "./Account";
 import Invoice from "./Invoice";
-import { async } from "@firebase/util";
+import { getAuth } from "firebase/auth";
 export const DataContext = createContext();
 
-export default function DatabaseProvider({
-  children,
-  user = { uid: "logged off" },
-}) {
+export default function DatabaseProvider({ children }) {
   const [data, setData] = useState({});
-
-  function setUp(
+  const auth = getAuth();
+  const user = auth.currentUser;
+  async function setUp(
     Datatype,
     collectionPath,
-    q = query(collection(db, "users", user.uid, collectionPath)),
+    q = query(collection(db, "users", user?.uid, collectionPath)),
     dataName = collectionPath
   ) {
-    useEffect(() => {
-      (async function subscribeToSnapshot() {
-        await onSnapshot(
-          q,
-          collection(db, "users", user.uid, collectionPath),
-          {
-            next: (querySnapshot) => {
-              let docs = [];
-              querySnapshot.forEach((doc) => {
-                docs.push(new Datatype(doc.id, doc.data()));
-              });
-              setData((prev) => ({ ...prev, [dataName]: docs }));
-            },
-            error: (error) => {
-              console.log("Error [DatabaseProvider]:" + error);
-            },
-          },
-          [setData, user]
-        );
-      })();
-    }, []);
+    const unsub = await onSnapshot(
+      q,
+      collection(db, "users", user?.uid, collectionPath),
+      {
+        next: (querySnapshot) => {
+          let docs = [];
+          querySnapshot.forEach((doc) => {
+            docs.push(new Datatype(doc.id, doc.data()));
+          });
+          setData((prev) => ({ ...prev, [dataName]: docs }));
+        },
+        error: (error) => {
+          console.log("Error [DatabaseProvider]:" + error);
+        },
+      },
+      [setData, user]
+    );
     Datatype.addItem = async (itemToAdd) => {
       await addDoc(
-        collection(db, "users/" + user.uid + "/" + collectionPath),
+        collection(db, "users/" + user?.uid + "/" + collectionPath),
         itemToAdd
       );
     };
+    return unsub;
   }
-  let addPerson = setUp(Person, "persons");
-  let addAccount = setUp(Account, "accounts");
-  let addInvoice = setUp(Invoice, "invoices");
-  let addMember = setUp(
-    Person,
-    "persons",
-    query(
-      collection(db, "users", user.uid, "persons"),
-      where("member", "==", true)
-    ),
-    "members"
-  );
+
+  useEffect(() => {
+    setUp(Person, "persons");
+    setUp(Account, "accounts");
+    setUp(Invoice, "invoices");
+    setUp(
+      Person,
+      "persons",
+      query(
+        collection(db, "users", user?.uid, "persons"),
+        where("member", "==", true)
+      ),
+      "members"
+    );
+  }, []);
 
   return (
     <DataContext.Provider

@@ -5,7 +5,7 @@ import { Text, Box } from "native-base";
 import AccountsScreen from "../screens/AccountsScreen";
 import InvoicesScreen from "../screens/InvoicesScreen";
 import MembersScreen from "../screens/MembersScreen";
-export default function Navigator({ nav }) {
+export default function MainNavigator({ nav }) {
   let screen = <Text>Not available: {nav}</Text>;
 
   switch (nav) {

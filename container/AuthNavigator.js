@@ -3,12 +3,12 @@ import { Text, Box } from "native-base";
 import SigninScreen from "../screens/SigninScreen";
 import SignupScreen from "../screens/SignupScreen";
 import VerifyEmailScreen from "../screens/VerifyEmailScreen";
-export default function Navigator({ nav, setNav, setUser }) {
+export default function AuthNavigator({ nav, setNav }) {
   let screen = <Text>Not available: {nav}</Text>;
 
   switch (nav) {
     case "signin":
-      screen = <SigninScreen setNav={setNav} setUser={setUser} />;
+      screen = <SigninScreen />;
       break;
     case "signup":
       screen = <SignupScreen setNav={setNav} />;

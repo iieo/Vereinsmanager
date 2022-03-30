@@ -9,8 +9,14 @@ export default function InputsManager(props) {
   if (props.modalData.additionalInputs) {
     definedInputs = definedInputs.concat(props.modalData.additionalInputs);
   }
-  const inputs = definedInputs.map((inputData) => {
-    return <InputsManagerNavigator {...props} inputData={inputData} />;
+  const inputs = definedInputs.map((inputData, index) => {
+    return (
+      <InputsManagerNavigator
+        {...props}
+        inputData={inputData}
+        key={inputData + index}
+      />
+    );
   });
   return (
     <Column space="5" p="5">

@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import {
-  Column,
-  Center,
-  Icon,
-  Heading,
-  Box,
-  Button,
-  Divider,
-  Text,
-} from "native-base";
-import DataInput from "../components/displayData/inputs/DataInputs";
+import { Column, Center, Icon, Heading, Box, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 
 export default function VerifyEmailScreen({ setNav }) {
+  const auth = getAuth();
   const [state, setState] = useState({
     email: "test@test.de",
     password: "testtest",
@@ -28,8 +20,15 @@ export default function VerifyEmailScreen({ setNav }) {
         <Center flex="1">
           <Icon as={<MaterialIcons name="email" />} size={32} color="white" />
           <Heading my="5">Bestätige bitte deine E-Mail-Adresse</Heading>
-          <Button px="10" onPress={() => setNav("signin")}>
-            Zum Anmelden
+          <Button
+            px="10"
+            onPress={() => {
+              sendEmailVerification(auth.currentUser);
+              setNav("signin");
+              console.log("Resent link");
+            }}
+          >
+            Bestätigungslink erneut senden
           </Button>
         </Center>
       </Box>

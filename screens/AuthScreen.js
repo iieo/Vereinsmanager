@@ -4,7 +4,7 @@ import DataInput from "../components/displayData/inputs/DataInputs";
 
 export default function AuthScreen({ title, inputs, onSubmit }) {
   const [state, setState] = useState({
-    email: "test@test.de",
+    email: "Leopold.Bauer@gmx.de",
     password: "testtest",
   });
   return (
