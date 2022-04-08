@@ -1,8 +1,16 @@
 import React from "react";
 import DataFab from "./DataFab";
 import { Input, Divider, Row, Column, ScrollView, Heading } from "native-base";
-
-export default function Datatable({ data, headers, children, title, sort}) {
+import Person from "../datahandler/Person";
+function getCellValue(obj, headerObj) {
+  let value = obj.data[headerObj.replacing];
+  if (headerObj.type === "selectUser") {
+    return Person.getPersonById(value);
+  } else {
+    return value;
+  }
+}
+export default function Datatable({ data, headers, children, title, sort }) {
   return (
     <Column h="100%">
       <Heading mt="6" size="md">
@@ -20,7 +28,7 @@ export default function Datatable({ data, headers, children, title, sort}) {
             <TableRow key={index + obj}>
               {headers.map((headerObj, index2) => (
                 <TableCell
-                  value={obj.data[headerObj.replacing]}
+                  value={getCellValue(obj, headerObj)}
                   key={headerObj.replacing + index2}
                 />
               ))}

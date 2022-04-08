@@ -29,7 +29,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
       <Modal.Content maxWidth={"500px"} maxHeight={"800px"}>
         <Modal.CloseButton />
         <Modal.Header>{modalData?.title}</Modal.Header>
-        <Modal.Body p="4">
+        <Modal.Body p="9">
           <KeyboardAvoidingView behavior="padding" enabled>
             <InputsManager
               data={data}
@@ -39,7 +39,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
             />
           </KeyboardAvoidingView>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer px="9">
           <Button.Group space={4}>
             <Button
               variant="ghost"

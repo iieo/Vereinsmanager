@@ -4,11 +4,7 @@ import MainContainer from "./container/MainContainer";
 import AuthContainer from "./container/AuthContainer";
 import Person from "./components/datahandler/Person";
 import { getAuth } from "firebase/auth";
-import {
-  setPersistence,
-  browserSessionPersistence,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 // Define the config
 const config = {
   useSystemColorMode: false,
@@ -17,20 +13,16 @@ const config = {
 
 // extend the theme
 export const theme = extendTheme({ config });
-export const UserContext = createContext();
 
 export default function App() {
   const auth = getAuth();
   let [nav, setNav] = useState("signin");
   let [user, setUser] = useState();
-  let [redirected, setRedirected] = useState(false);
   onAuthStateChanged(auth, (userAuth) => {
     if (userAuth) {
+      console.log("still signed in");
       if (!userAuth.emailVerified) {
-        if (!redirected) {
-          setNav("verify");
-          setRedirected(true);
-        }
+        setNav("verify");
       } else {
         if (nav === "verify" || nav === "signin" || nav === "signup") {
           setNav("dashboard");
@@ -39,29 +31,29 @@ export default function App() {
         }
       }
     } else {
-      setNav("signin");
       setUser(null);
+      if (nav !== "signin" && nav !== "signup") {
+        setNav("signin");
+      }
     }
   });
   return (
     <NativeBaseProvider theme={theme}>
-      <UserContext.Provider value={user}>
-        <Center flex={1}>
-          <Stack
-            m="0"
-            w="100%"
-            h="100%"
-            direction={{ base: "column", md: "row" }}
-            rounded="xl"
-          >
-            {!user ? (
-              <AuthContainer nav={nav} setNav={setNav} />
-            ) : (
-              <MainContainer nav={nav} setNav={setNav} />
-            )}
-          </Stack>
-        </Center>
-      </UserContext.Provider>
+      <Center flex={1}>
+        <Stack
+          m="0"
+          w="100%"
+          h="100%"
+          direction={{ base: "column", md: "row" }}
+          rounded="xl"
+        >
+          {!user ? (
+            <AuthContainer nav={nav} setNav={setNav} />
+          ) : (
+            <MainContainer nav={nav} setNav={setNav} />
+          )}
+        </Stack>
+      </Center>
     </NativeBaseProvider>
   );
 }

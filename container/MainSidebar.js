@@ -39,7 +39,6 @@ export default function MainNavContainer({ nav, setNav }) {
       text: "Abmelden",
       iconName: "poweroff",
       onPress: () => {
-        setNav("signin");
         signOut(auth);
       },
     },

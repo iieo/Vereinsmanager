@@ -13,7 +13,7 @@ import DataSelector from "./DataSelector";
 import { DataContext } from "../../datahandler/DatabaseProvider";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-export default function SelectUserInput(props) {
+export default function SelectInputButton(props) {
   const defaultText = props.inputData.text;
   const [showModal, setShowModal] = useState(false);
   const [selectedText, setSelectedText] = useState(defaultText);

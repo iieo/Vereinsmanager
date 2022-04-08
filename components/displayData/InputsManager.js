@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Column } from "native-base";
 import DataCheckbox from "./inputs/DataCheckbox";
-import SelectorInput from "./inputs/SelectorInput";
+import SelectorInputButton from "./inputs/SelectorInputButton";
 import DataInput from "./inputs/DataInputs";
 
 export default function InputsManager(props) {
@@ -18,11 +18,7 @@ export default function InputsManager(props) {
       />
     );
   });
-  return (
-    <Column space="5" p="5">
-      {inputs}
-    </Column>
-  );
+  return <Column space="5">{inputs}</Column>;
 }
 function InputsManagerNavigator(props) {
   let input = <Text>Error creating input</Text>;
@@ -32,7 +28,7 @@ function InputsManagerNavigator(props) {
       break;
     case "selectUser":
       input = (
-        <SelectorInput
+        <SelectorInputButton
           {...props}
           data={props.data.persons}
           title="Wähle eine Person aus..."
@@ -41,7 +37,7 @@ function InputsManagerNavigator(props) {
       break;
     case "selectAccount":
       input = (
-        <SelectorInput
+        <SelectorInputButton
           {...props}
           data={props.data.accounts}
           title="Wähle ein Konto aus..."
