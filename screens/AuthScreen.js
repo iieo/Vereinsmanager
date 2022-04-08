@@ -3,10 +3,7 @@ import { Column, Center, Heading, Box, Button, Divider } from "native-base";
 import DataInput from "../components/displayData/inputs/DataInputs";
 
 export default function AuthScreen({ title, inputs, onSubmit }) {
-  const [state, setState] = useState({
-    email: "Leopold.Bauer@gmx.de",
-    password: "testtest",
-  });
+  const [state, setState] = useState({});
   return (
     <Center flex="1">
       <Box

@@ -20,14 +20,12 @@ export default function App() {
   let [user, setUser] = useState();
   onAuthStateChanged(auth, (userAuth) => {
     if (userAuth) {
-      console.log("still signed in");
       if (!userAuth.emailVerified) {
         setNav("verify");
       } else {
         if (nav === "verify" || nav === "signin" || nav === "signup") {
           setNav("dashboard");
           setUser(userAuth);
-          console.log("Signed in!");
         }
       }
     } else {
