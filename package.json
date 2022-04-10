@@ -1,6 +1,6 @@
 {
   "name": "vereinsmanager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "description": "Manage the members and bills",
   "author": "iieo <achtbyte01@gmail.com>",
