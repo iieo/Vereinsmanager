@@ -15,6 +15,18 @@ export default function AccountsScreen() {
     },
     { text: "IBAN", iconName: "person", replacing: "iban" },
     { text: "BIC", iconName: "person", replacing: "bic" },
+    {
+      text: "Kreditinstitut",
+      iconName: "person",
+      replacing: "bank",
+      type: "text",
+    },
+    {
+      text: "Unterschrift",
+      iconName: "person",
+      replacing: "signed",
+      type: "date",
+    },
   ];
   const modalData = {
     title: "Konto hinzufügen",

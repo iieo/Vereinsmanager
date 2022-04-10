@@ -19,6 +19,42 @@ export default function InvoicesScreen() {
       replacing: "receiver",
       type: "selectAccount",
     },
+    {
+      text: "Zweck",
+      iconName: "person",
+      replacing: "use",
+      type: "text",
+    },
+    {
+      text: "Kategorie",
+      iconName: "person",
+      replacing: "category",
+      type: "text",
+    },
+    {
+      text: "Bereich",
+      iconName: "person",
+      replacing: "sector",
+      type: "text",
+    },
+    {
+      text: "Menge",
+      iconName: "person",
+      replacing: "amount",
+      type: "text",
+    },
+    {
+      text: "Rechnungsdatum",
+      iconName: "person",
+      replacing: "invoice",
+      type: "time",
+    },
+    {
+      text: "Bezahldatum",
+      iconName: "person",
+      replacing: "billed",
+      type: "time",
+    },
   ];
   const modalData = {
     defaultInputs: headerInputs,

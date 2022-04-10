@@ -9,6 +9,8 @@ export default function MembersScreen() {
     { text: "Name", iconName: "person", replacing: "name" },
     { text: "Vorname", iconName: "person", replacing: "firstName" },
     { text: "Instrument", iconName: "person", replacing: "instrument" },
+    { text: "Beitrag", iconName: "person", replacing: "contribution" },
+    { text: "Spende", iconName: "person", replacing: "donation" },
   ];
   return (
     <Datatable

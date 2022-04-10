@@ -17,13 +17,5 @@ export default function AuthNavigator({ nav, setNav }) {
       screen = <VerifyEmailScreen setNav={setNav} />;
       break;
   }
-  return (
-    <Box
-      flex={{ base: 1, md: 3 }}
-      _dark={{ bg: "muted.800" }}
-      _light={{ bg: "light.50" }}
-    >
-      {screen}
-    </Box>
-  );
+  return screen;
 }

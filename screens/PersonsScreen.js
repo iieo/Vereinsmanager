@@ -10,6 +10,42 @@ export default function PersonsScreen() {
     { text: "Name", iconName: "person", replacing: "name" },
     { text: "Vorname", iconName: "person", replacing: "firstName" },
     { text: "Straße", iconName: "person", replacing: "street" },
+    {
+      text: "Postleitzahl",
+      iconName: "person",
+      replacing: "postalCode",
+      type: "number",
+    },
+    {
+      text: "Ort",
+      iconName: "person",
+      replacing: "city",
+      type: "text",
+    },
+    {
+      text: "Geburtsdatum",
+      iconName: "person",
+      replacing: "birthdate",
+      type: "date",
+    },
+    {
+      text: "E-Mail",
+      iconName: "person",
+      replacing: "email",
+      type: "email",
+    },
+    {
+      text: "Telefon",
+      iconName: "person",
+      replacing: "phone",
+      type: "number",
+    },
+    {
+      text: "Handynummer",
+      iconName: "person",
+      replacing: "mobile",
+      type: "number",
+    },
   ];
   const additionalInputs = [
     {
@@ -19,6 +55,18 @@ export default function PersonsScreen() {
       type: "checkbox",
     },
     { text: "Instrument", iconName: "person", replacing: "instrument" },
+    {
+      text: "Beitrag",
+      iconName: "person",
+      replacing: "contribution",
+      type: "money",
+    },
+    {
+      text: "Spende",
+      iconName: "person",
+      replacing: "donation",
+      type: "money",
+    },
   ];
   const modalData = {
     defaultInputs,
