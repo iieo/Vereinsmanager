@@ -18,7 +18,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "build": "yarn electron-webpack && yarn electron-builder --dir -c.compression=store -c.mac.identity=null",
-    "prod": "yarn electron-webpack && yarn electron-builder --dir -c.mac.identity=null --linux deb"
+    "prodLin": "yarn electron-webpack && yarn electron-builder --dir -c.mac.identity=null --linux deb",
+    "prodWin": "yarn electron-webpack && yarn electron-builder --dir -c.mac.identity=null --windows nsis"
   },
   "dependencies": {
     "expo": "~42.0.0",
