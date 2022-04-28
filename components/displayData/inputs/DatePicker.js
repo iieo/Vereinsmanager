@@ -28,12 +28,6 @@ export default function DatePicker(props) {
       <FormControl.Label>{props.inputData.text}</FormControl.Label>
 
       <Button title="Show Date Picker" onPress={showDatePicker} />
-      <DateTimePickerModal
-        isVisible={true}
-        mode="date"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
     </FormControl>
   );
 }

@@ -47,7 +47,7 @@ function InputsManagerSeparator(props) {
         />
       );
       break;
-    case "date":
+    case "dateComnigSoon":
       input = <DatePicker {...props} />;
       break;
     case "password":

@@ -22,7 +22,6 @@
     "prodWin": "yarn electron-webpack && yarn electron-builder --dir -c.mac.identity=null --windows nsis"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "3.5.2",
     "expo": "~42.0.0",
     "expo-asset": "~8.3.3",
     "expo-file-system": "~11.1.3",

@@ -54,6 +54,24 @@ export default function PersonsScreen() {
       replacing: "member",
       type: "checkbox",
     },
+    {
+      text: "Vororchester?",
+      iconName: "person",
+      replacing: "preorchestra",
+      type: "checkbox",
+    },
+    {
+      text: "Orchester?",
+      iconName: "person",
+      replacing: "orchestra",
+      type: "checkbox",
+    },
+    {
+      text: "Kammerorchester?",
+      iconName: "person",
+      replacing: "chamberOrchestra",
+      type: "checkbox",
+    },
     { text: "Instrument", iconName: "person", replacing: "instrument" },
     {
       text: "Beitrag",
@@ -75,12 +93,7 @@ export default function PersonsScreen() {
     addItem: Person.addItem,
   };
   return (
-    <Datatable
-      data={data.persons}
-      sort={Person.sort}
-      title="Personen"
-      headers={headerInputs}
-    >
+    <Datatable data={data.persons} title="Personen" headers={headerInputs}>
       <DataFab text="Person hinzufügen">
         <InputModal modalData={modalData} />
       </DataFab>
