@@ -3,15 +3,18 @@ import { Text, Column } from "native-base";
 import DataCheckbox from "./inputs/DataCheckbox";
 import SelectorInputButton from "./inputs/SelectorInputButton";
 import DataInput from "./inputs/DataInputs";
+import PasswordInput from "./inputs/PasswordInput";
+import DatePicker from "./inputs/DatePicker";
 
 export default function InputsManager(props) {
   let definedInputs = [].concat(props.modalData.defaultInputs);
   if (props.modalData.additionalInputs) {
     definedInputs = definedInputs.concat(props.modalData.additionalInputs);
   }
+  console.log(inputs);
   const inputs = definedInputs.map((inputData, index) => {
     return (
-      <InputsManagerNavigator
+      <InputsManagerSeparator
         {...props}
         inputData={inputData}
         key={inputData + index}
@@ -20,8 +23,8 @@ export default function InputsManager(props) {
   });
   return <Column space="5">{inputs}</Column>;
 }
-function InputsManagerNavigator(props) {
-  let input = <Text>Error creating input</Text>;
+function InputsManagerSeparator(props) {
+  let input = <Text>Error creating input: {props.inputData.type}</Text>;
   switch (props.inputData.type) {
     case "checkbox":
       input = <DataCheckbox {...props} />;
@@ -44,8 +47,14 @@ function InputsManagerNavigator(props) {
         />
       );
       break;
+    case "date":
+      input = <DatePicker {...props} />;
+      break;
+    case "password":
+      input = <PasswordInput {...props} />;
+      break;
     default:
-      input = <DataInput {...props} />;
+      input = <DataInput {...props} type={props.inputData.type} />;
       break;
   }
   return input;

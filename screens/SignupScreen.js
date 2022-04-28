@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import AuthScreen from "./AuthScreen";
+import InputsManager from "../components/displayData/InputsManager";
 
 export default function SignupScreen({ setNav }) {
   const auth = getAuth();
@@ -17,9 +18,8 @@ export default function SignupScreen({ setNav }) {
         formData.password
       );
       const user = userCredential.user;
-      setNav("verify");
-      user.sendEmailVerification();
       sendEmailVerification(user);
+      setNav("verify");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -35,11 +35,13 @@ export default function SignupScreen({ setNav }) {
       text: "Passwort",
       replacing: "password",
       iconName: "lock",
+      type: "password",
     },
     {
       text: "Passwort wiederholen",
       replacing: "password2",
       iconName: "lock",
+      type: "password",
     },
   ];
   return <AuthScreen onSubmit={signup} inputs={inputs} title="Registrieren" />;

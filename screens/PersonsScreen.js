@@ -6,7 +6,7 @@ import DataFab from "../components/displayData/DataFab";
 import InputModal from "../components/displayData/InputModal";
 export default function PersonsScreen() {
   const data = useContext(DataContext);
-  const defaultInputs = [
+  const headerInputs = [
     { text: "Name", iconName: "person", replacing: "name" },
     { text: "Vorname", iconName: "person", replacing: "firstName" },
     { text: "Straße", iconName: "person", replacing: "street" },
@@ -38,13 +38,13 @@ export default function PersonsScreen() {
       text: "Telefon",
       iconName: "person",
       replacing: "phone",
-      type: "number",
+      type: "tel",
     },
     {
       text: "Handynummer",
       iconName: "person",
       replacing: "mobile",
-      type: "number",
+      type: "tel",
     },
   ];
   const additionalInputs = [
@@ -69,7 +69,7 @@ export default function PersonsScreen() {
     },
   ];
   const modalData = {
-    defaultInputs,
+    defaultInputs: headerInputs,
     additionalInputs,
     title: "Person hinzufügen",
     addItem: Person.addItem,
@@ -79,7 +79,7 @@ export default function PersonsScreen() {
       data={data.persons}
       sort={Person.sort}
       title="Personen"
-      headers={defaultInputs}
+      headers={headerInputs}
     >
       <DataFab text="Person hinzufügen">
         <InputModal modalData={modalData} />

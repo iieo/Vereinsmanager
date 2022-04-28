@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Column, Center, Heading, Box, Button, Divider } from "native-base";
 import DataInput from "../components/displayData/inputs/DataInputs";
+import InputsManager from "../components/displayData/InputsManager";
 
 export default function AuthScreen({ title, inputs, onSubmit }) {
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    email: "bamiroj341@aikusy.com",
+    password: "password",
+  });
   return (
     <Center flex="1">
       <Box
@@ -15,14 +19,11 @@ export default function AuthScreen({ title, inputs, onSubmit }) {
         <Center flex="1">
           <Heading mb="10">{title}</Heading>
           <Column space="7">
-            {inputs?.map((input, index) => (
-              <DataInput
-                key={input + index}
-                inputData={input}
-                inputValues={state}
-                setInputValues={setState}
-              />
-            ))}
+            <InputsManager
+              modalData={{ defaultInputs: inputs }}
+              inputValues={state}
+              setInputValues={setState}
+            />
             <Divider my="2" />
             <Button px="32" onPress={() => onSubmit(state)}>
               {title}

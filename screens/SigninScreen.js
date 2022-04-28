@@ -28,6 +28,7 @@ export default function SigninScreen() {
       text: "Passwort",
       replacing: "password",
       iconName: "lock",
+      type: "password",
     },
   ];
   return <AuthScreen onSubmit={signin} inputs={inputs} title="Anmelden" />;
