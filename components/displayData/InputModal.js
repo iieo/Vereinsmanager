@@ -46,6 +46,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
               colorScheme="blueGray"
               onPress={() => {
                 setShowModal(false);
+                setInputValues({})
               }}
             >
               Abbrechen
@@ -54,6 +55,7 @@ export default function InputModal({ showModal, setShowModal, modalData }) {
               onPress={() => {
                 modalData.addItem(inputValues);
                 setShowModal(false);
+                setInputValues({})
               }}
             >
               Speichern
